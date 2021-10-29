@@ -35,4 +35,6 @@ jobs:
 #           linter: # default is standard
           # Annotate the diff UI with lint errors. Requires passing in env.GITHUB_TOKEN.
           annotate: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
