@@ -22,10 +22,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        # Now you can just run eslint or standard yourself
       - name: StandardJS lint checks
-      - uses: actions/checkout@v2
-      # This sets up a "problem matcher" for eslint and standard
-      - uses: actions/setup-node@v2
-      # Now you can just run eslint or standard yourself
-      - run: npx standard
+        run: npx standard
 
