@@ -3,7 +3,7 @@
 # If there are linting errors that it couldn't fix it exits with a failure
 # otherwise it exists with success
 
-name: linter
+name: lint_and_fix
 
 # Controls when the workflow will run
 on:
@@ -44,11 +44,13 @@ jobs:
         if: steps.standard-fix.outputs.has_changes == '1' 
         # continue-on-error: true
         run: |
+          git config --local user.email "${{ secrets.GH_EMAIL }}"
+          git config --local user.name "zecarrera"
           git add .
           git commit -m "${{ github.event.pull_request.head.ref }} Automatic standard --fix"
       - name: Push changes
         if: steps.commit.outcome == 'success' && steps.standard-fix.outputs.has_changes == '1'
         uses: ad-m/github-push-action@v0.5.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
           branch: ${{ github.event.pull_request.head.ref }}
