@@ -7,9 +7,7 @@ name: linter
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
+  # Triggers the workflow on pull request events but only for the main branch
   pull_request:
     branches: [ main ]
 
@@ -44,7 +42,7 @@ jobs:
         id: commit
         # git diff sets exit code to 1 if there are differences
         if: steps.standard-fix.outputs.has_changes == '1' 
-        continue-on-error: true
+        # continue-on-error: true
         run: |
           git add .
           git commit -m "${{ github.event.pull_request.head.ref }} Automatic standard --fix"
