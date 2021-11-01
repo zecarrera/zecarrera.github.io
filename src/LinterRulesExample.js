@@ -5,17 +5,17 @@ module.exports = function examples () {
   unusedVar()
 }
 function indentation (name) {
-    console.log('hi', name)
+  console.log('hi', name)
 }
 
 function singleQuotes () {
-  console.log("hello there")
+  console.log('hello there')
 }
 
 function unusedVar () {
-  var result = something()
+  const result = something()
 }
 
-function spacing() {
-  if('condition'=== null) { console.log('spacing') }
+function spacing () {
+  if ('condition' === null) { console.log('spacing') }
 }
