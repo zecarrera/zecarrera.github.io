@@ -22,8 +22,6 @@ jobs:
   lint:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -40,6 +38,8 @@ jobs:
           npx standard --fix || true
           git diff --exit-code
           echo "::set-output name=has_changes::$?"
+        shell: bash {0}
+        # opt out of fail-fast behaviour
       - name: Commit files
         id: commit
         # git diff sets exit code to 1 if there are differences
