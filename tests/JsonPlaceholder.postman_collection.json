@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "1bf5dfcd-d157-460b-a2ec-580311b11ded",
+		"name": "JsonPlaceholder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var userOne = jsonData.find(user => user.id ===1)",
+							"    pm.expect(userOne.name).to.eql('Leanne Graham');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"var todoSchema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"userId\": {",
+							"            \"type\": \"number\"",
+							"        },",
+							"        \"id\": { ",
+							"            \"type\": \"number\"",
+							"        },",
+							"        \"title\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"completed\": {",
+							"            \"type\": \"boolean\"",
+							"        }",
+							"    },",
+							"    \"required\": [",
+							"        \"id\",",
+							"        \"userId\",",
+							"        \"title\",",
+							"        \"completed\"",
+							"    ]",
+							"    ",
+							"};",
+							"",
+							"",
+							"pm.test('Schema is valid', function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(tv4.validate(jsonData[0], todoSchema)).to.be.true;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/todos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://jsonplaceholder.typicode.com"
+		}
+	]
+}
