@@ -23,7 +23,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: set snyk auth
-      - run: snyk config set api=${{ secrets.SNYK_TOKEN }}
+        run: snyk config set api=${{ secrets.SNYK_TOKEN }}
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
