@@ -5,10 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Runs npm install 
+        run: npm install
+      - name: Starts app
+        run: npm start
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v8
         with:
-          urls: 'https://zecarrera.github.io/'
+          urls: 'https://localhost:3000/'
           budgetPath: ./budget.json # test performance budgets -> https://github.com/GoogleChrome/budget.json
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
