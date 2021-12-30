@@ -2,11 +2,10 @@
 
 name: Node unit test and coverage
 
-on:
-  push:
+on: [push]
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
